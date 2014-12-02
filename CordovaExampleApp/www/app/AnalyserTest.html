@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>TextAnalyser Unit Tests</title>
+	
+	<link rel="stylesheet" href="./Libraries/qunit-1.15.0.css">
+	
+	<script src="./Libraries/qunit-1.15.0.js" type="text/javascript"></script>
+	<script src="./Libraries/angular.min.js" type="text/javascript"></script>
+	<script src="Analyser.js" type="text/javascript"></script>
+	
+	<!--
+	<script src="app.js" type="text/javascript"></script>
+	<script src="textAnalyserController.js" type="text/javascript"></script>
+	 -->
+	 
+	<script type="text/javascript">
+		var analyser = new Analyser();
+		
+		QUnit.test("Analyser getArrayOfWords method", function(assert) {     
+			assert.equal(analyser.getArrayOfWords("This is a single sentence.").toString(), (["This", "is", "a", "single", "sentence"]).toString());
+			assert.equal(analyser.getArrayOfWords("This is a single sentence.") instanceof Array, true);
+			assert.equal(analyser.getArrayOfWords("This is a single sentence.").length, 5);
+			
+			assert.equal(analyser.getArrayOfWords("This is a single sentence, but has a comma!").toString(), (["This", "is", "a", "single", "sentence", "but", "has", "a", "comma"]).toString());
+			assert.equal(analyser.getArrayOfWords("This is a single sentence, but has a comma!") instanceof Array, true);
+			assert.equal(analyser.getArrayOfWords("This is a single sentence, but has a comma!").length, 9);
+			
+			assert.equal(analyser.getArrayOfWords('This is a more complex sentence: Is "Hello World!" a good example?').toString(), (["This", "is", "a", "more", "complex", "sentence", "Is", "Hello", "World", "a", "good", "example"]).toString());
+			assert.equal(analyser.getArrayOfWords('This is a more complex sentence: Is "Hello World!" a good example?') instanceof Array, true);
+			assert.equal(analyser.getArrayOfWords('This is a more complex sentence: Is "Hello World!" a good example?').length, 12);
+		});
+		
+		QUnit.test("Analyser getNumberOfAlphabeticSymbols method", function(assert) {     
+			assert.equal(analyser.getNumberOfAlphabeticSymbols("This is a single sentence, but has a comma!"), 33);
+			assert.equal(analyser.getNumberOfAlphabeticSymbols('This is a more complex sentence: Is "Hello World!" a good example?'), 50);
+		});
+	</script>
+	
+</head>
+
+<body>
+
+	<div id="qunit">
+	</div>
+	
+</body>
+
+</html>
