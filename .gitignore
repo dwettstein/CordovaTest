@@ -1,3 +1,6 @@
 CordovaExampleApp/hooks/
 CordovaExampleApp/platforms/
 CordovaExampleApp/plugins/
+
+.sublime-project
+.sublime-workspace

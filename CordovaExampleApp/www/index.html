@@ -27,6 +27,8 @@
 
         <!-- Bootstrap -->
         <link rel="stylesheet" href="./css/bootstrap.min.css" >
+        <!-- Topcoat -->
+        <link rel="stylesheet" href="./css/topcoat-mobile-dark.min.css" >
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script type="text/javascript" src="./js/vendor/jquery-1.11.1.min.js"></script>
@@ -74,6 +76,10 @@
                                 <button class="btn btn-primary pull-right" ng-mousedown="toggleToDoDone(toDoItem)">
                                     <span ng-class="{'glyphicon glyphicon-minus': toDoItem.done, 'glyphicon glyphicon-ok': !toDoItem.done}" aria-hidden="true"></span>
                                 </button>
+                                <label class="topcoat-switch">
+                                    <input type="checkbox" class="topcoat-switch__input" ng-mousedown="toggleToDoDone(toDoItem)">
+                                    <div class="topcoat-switch__toggle"></div>
+                                </label>
                             </td>
                             <td style="vertical-align:middle">
                                 <button class="btn btn-danger pull-right" ng-click="removeToDo(toDoItem)">
