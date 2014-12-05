@@ -15,14 +15,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 7199,
-				"line_ending": "Windows"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -48,9 +40,11 @@
 	},
 	"file_history":
 	[
-		"/C/Users/taaweda1/Development/topcoat-0.8.0/demo/topcoat-mobile-dark.html",
-		"/C/Users/taaweda1/Development/topcoat-0.8.0/demo/js/main.js",
-		"/C/Users/taaweda1/Development/CordovaTest/CordovaExampleApp/www/CordovaExampleApp.sublime-project",
+		"/C/Users/Administrator/Documents/CordovaTest/CordovaExampleApp/www/index.html",
+		"/C/Users/Administrator/Documents/CordovaTest/CordovaExampleApp/www/app/controllers/TabController.js",
+		"/C/Users/Administrator/Documents/CordovaTest/CordovaExampleApp/www/app/app.js",
+		"/C/Users/Administrator/Documents/CordovaTest/CordovaExampleApp/www/app/controllers/tabController.js",
+		"/C/Users/Administrator/Documents/CordovaTest/CordovaExampleApp/www/app/controllers/toDoController.js",
 		"/C/Users/Administrator/Documents/CordovaTest/CordovaExampleApp/www/CordovaExampleApp.sublime-project",
 		"/C/Users/Administrator/Documents/CordovaTest/CordovaExampleApp/www/CordovaExampleApp.sublime-workspace",
 		"/C/Users/Administrator/Documents/CordovaExampleApp/www/index.html",
@@ -121,37 +115,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "index.html",
-					"settings":
-					{
-						"buffer_size": 7199,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4515,
-								4515
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 872.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

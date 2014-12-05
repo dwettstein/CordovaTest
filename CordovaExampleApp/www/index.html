@@ -35,90 +35,111 @@
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script type="text/javascript" src="./js/vendor/bootstrap.min.js"></script>
 
-        <!-- Javascript objects -->
-        <!--<script type="text/javascript" src="./app/Analyser.js"></script>-->
-
         <!-- AngularJS -->
         <script type="text/javascript" src="./js/vendor/angular.js"></script>
         <script type="text/javascript" src="./app/app.js"></script>
-        <script type="text/javascript" src="./app/controllers/toDoController.js"></script>
+        <script type="text/javascript" src="./app/controllers/ToDoController.js"></script>
+        <script type="text/javascript" src="./app/controllers/TabController.js"></script>
         <script type="text/javascript" src="./app/services/services.js"></script>
         <script type="text/javascript" src="./app/directives/directives.js"></script>
         
 
         <title>ToDo Application</title>
     </head>
-    <body ng-app="ToDoApp">
+    <body ng-app="ToDoApp" ng-controller="TabController as panel">
+        <div class="topcoat-navigation-bar">
+            <div class="topcoat-navigation-bar__item center full">
+                <h1 class="topcoat-navigation-bar__title">ToDo List</h1>
+            </div>
+        </div>
+        
+
         <div id='content' class='container-fluid' ng-controller="ToDoController">
-            <div class='row'>
-                <div class='col-md-4 col-md-offset-4'>
-                    <h3>Add a new todo:</h3>
-                    <input type="text" class="form-control input-lg" placeholder="What needs to be done?" ng-text-change="addToDo()" ng-model="newToDoText" autofocus>
+            <p>
+                <div class='row'>
+                    <div class='col-md-6 col-md-offset-3'>
+                        <input type="text" class="topcoat-text-input full" placeholder="What needs to be done?" ng-text-change="addToDo()" ng-model="newToDoText" autofocus>
+                    </div>
                 </div>
-            </div>
+            </p>
             <div class='row'>
-                <div class='col-md-4 col-md-offset-4'>
-                    <h3>Undone:</h3>
-                    <table class="table table-hover">
-                        <colgroup>
-                            <col class="span1">
-                            <col class="span9">
-                            <col class="span1">
-                            <col class="span1">
-                        </colgroup>
-                        <tr ng-class="{'success': toDoItem.done}" ng-repeat="toDoItem in todos" ng-show="!toDoItem.done">
-                            <td style="vertical-align:middle">{{todos.indexOf(toDoItem)}}</td>
-                            <td style="vertical-align:middle">
-                                <input type="text" class="form-control" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text" />
-                            </td>
-                            <!--<td style="vertical-align:middle">{{toDoItem.id}}</td>-->
-                            <td style="vertical-align:middle">
-                                <button class="btn btn-primary pull-right" ng-mousedown="toggleToDoDone(toDoItem)">
-                                    <span ng-class="{'glyphicon glyphicon-minus': toDoItem.done, 'glyphicon glyphicon-ok': !toDoItem.done}" aria-hidden="true"></span>
-                                </button>
-                                <label class="topcoat-switch">
-                                    <input type="checkbox" class="topcoat-switch__input" ng-mousedown="toggleToDoDone(toDoItem)">
-                                    <div class="topcoat-switch__toggle"></div>
-                                </label>
-                            </td>
-                            <td style="vertical-align:middle">
-                                <button class="btn btn-danger pull-right" ng-click="removeToDo(toDoItem)">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class='row'>
-                <div class='col-md-4 col-md-offset-4'>
-                    <h3>Done:</h3>
-                    <table class="table table-hover">
-                        <colgroup>
-                            <col class="span1">
-                            <col class="span9">
-                            <col class="span1">
-                            <col class="span1">
-                        </colgroup>
-                        <tr ng-class="{'success': toDoItem.done}" ng-repeat="toDoItem in todos" ng-show="toDoItem.done">
-                            <td style="vertical-align:middle">{{todos.indexOf(toDoItem)}}
-                            </td>
-                            <td style="vertical-align:middle">
-                                <input type="text" class="form-control" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text" />
-                            </td>
-                            <!--<td style="vertical-align:middle">{{toDoItem.id}}</td>-->
-                            <td style="vertical-align:middle">
-                                <button class="btn btn-primary pull-right" ng-mousedown="toggleToDoDone(toDoItem)">
-                                    <span ng-class="{'glyphicon glyphicon-minus': toDoItem.done, 'glyphicon glyphicon-ok': !toDoItem.done}" aria-hidden="true"></span>
-                                </button>
-                            </td>
-                            <td style="vertical-align:middle">
-                                <button class="btn btn-danger pull-right" ng-click="removeToDo(toDoItem)">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </button>
-                            </td>
-                        </tr>
-                    </table>
+                <div class='col-md-6 col-md-offset-3'>
+                    <p>
+                        <div class="topcoat-tab-bar full">
+                            <label class="topcoat-tab-bar__item">
+                                <input type="radio" name="tab-bar" checked>
+                                    <button class="topcoat-tab-bar__button full" ng-click="panel.selectTab(1)">Open</button>
+                                </input>
+                            </label>
+                            <label class="topcoat-tab-bar__item">
+                                <input type="radio" name="tab-bar">
+                                    <button class="topcoat-tab-bar__button full" ng-click="panel.selectTab(2)">Done</button>
+                                </input>
+                            </label>
+                        </div>
+                    </p>
+
+                    <div class="topcoat-list" ng-show="panel.isSelected(1)">
+                        <ul class="topcoat-list__container" ng-repeat="toDoItem in todos" ng-show="!toDoItem.done">
+                            <li class="topcoat-list__item">
+                                <table>
+                                    <colgroup>
+                                        <col span="1" style="width:2%">
+                                        <col span="1" style="width:3%">
+                                        <col span="1" style="width:65%">
+                                        <col span="1" style="width:5%">
+                                    </colgroup>
+                                    <tr>
+                                        <td>
+                                            {{todos.indexOf(toDoItem)}}
+                                        </td>
+                                        <td>
+                                            <label class="topcoat-checkbox">
+                                                <input type="checkbox" ng-mousedown="toggleToDoDone(toDoItem)"><div class="topcoat-checkbox__checkmark"/></input>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="topcoat-text-input full" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
+                                        </td>
+                                        <td style="float:right">
+                                            <button class="topcoat-button" ng-click="removeToDo(toDoItem)">Remove</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="topcoat-list" ng-show="panel.isSelected(2)">
+                        <ul class="topcoat-list__container" ng-repeat="toDoItem in todos" ng-show="toDoItem.done">
+                            <li class="topcoat-list__item">
+                                <table>
+                                    <colgroup>
+                                        <col span="1" style="width:2%">
+                                        <col span="1" style="width:3%">
+                                        <col span="1" style="width:65%">
+                                        <col span="1" style="width:5%">
+                                    </colgroup>
+                                    <tr>
+                                        <td>
+                                            {{todos.indexOf(toDoItem)}}
+                                        </td>
+                                        <td>
+                                            <label class="topcoat-checkbox">
+                                                <input type="checkbox" ng-mousedown="toggleToDoDone(toDoItem)" checked><div class="topcoat-checkbox__checkmark"/></input>
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="topcoat-text-input full" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
+                                        </td>
+                                        <td style="float:right">
+                                            <button class="topcoat-button" ng-click="removeToDo(toDoItem)">Remove</button>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
