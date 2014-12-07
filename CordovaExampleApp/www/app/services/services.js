@@ -43,6 +43,7 @@
                     var item = {
                         id: guidGenerator(),
                         text: text,
+                        createDate: (new Date(Date.now())).toLocaleString(),
                         done: false
                     }
                     var items = loadFromStorage();
@@ -120,7 +121,7 @@
                 create: function (text, address) {
                     var item = new toDoItem({
                         text: text,
-                        address: address,
+                        createDate: Date.now(),
                         done: false
                     });
 

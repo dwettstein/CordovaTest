@@ -57,13 +57,13 @@
         <div id='content' class='container-fluid' ng-controller="ToDoController">
             <p>
                 <div class='row'>
-                    <div class='col-md-6 col-md-offset-3'>
-                        <input type="text" class="topcoat-text-input full" placeholder="What needs to be done?" ng-text-change="addToDo()" ng-model="newToDoText" autofocus>
+                    <div class='col-md-8 col-md-offset-2'>
+                        <input type="text" class="topcoat-text-input full" placeholder="Add a new todo..." ng-text-change="addToDo()" ng-model="newToDoText" autofocus>
                     </div>
                 </div>
             </p>
             <div class='row'>
-                <div class='col-md-6 col-md-offset-3'>
+                <div class='col-md-8 col-md-offset-2'>
                     <p>
                         <div class="topcoat-tab-bar full">
                             <label class="topcoat-tab-bar__item">
@@ -84,24 +84,28 @@
                             <li class="topcoat-list__item">
                                 <table>
                                     <colgroup>
-                                        <col span="1" style="width:2%">
                                         <col span="1" style="width:3%">
-                                        <col span="1" style="width:65%">
+                                        <col span="1" style="width:5%">
+                                        <col span="1" style="width:67%">
+                                        <col span="1" style="width:20%">
                                         <col span="1" style="width:5%">
                                     </colgroup>
                                     <tr>
-                                        <td>
-                                            {{todos.indexOf(toDoItem)}}
+                                        <td class="center">
+                                            <div>{{todos.indexOf(toDoItem)}}</div>
                                         </td>
                                         <td>
                                             <label class="topcoat-checkbox">
                                                 <input type="checkbox" ng-mousedown="toggleToDoDone(toDoItem)"><div class="topcoat-checkbox__checkmark"/></input>
                                             </label>
                                         </td>
-                                        <td>
+                                        <td class="center">
                                             <input type="text" class="topcoat-text-input full" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
                                         </td>
-                                        <td style="float:right">
+                                        <td class="center">
+                                            <div>{{toDoItem.createDate}}</div>
+                                        </td>
+                                        <td class="center">
                                             <button class="topcoat-button" ng-click="removeToDo(toDoItem)">Remove</button>
                                         </td>
                                     </tr>
@@ -115,13 +119,14 @@
                             <li class="topcoat-list__item">
                                 <table>
                                     <colgroup>
-                                        <col span="1" style="width:2%">
                                         <col span="1" style="width:3%">
-                                        <col span="1" style="width:65%">
+                                        <col span="1" style="width:5%">
+                                        <col span="1" style="width:67%">
+                                        <col span="1" style="width:20%">
                                         <col span="1" style="width:5%">
                                     </colgroup>
                                     <tr>
-                                        <td>
+                                        <td class="center">
                                             {{todos.indexOf(toDoItem)}}
                                         </td>
                                         <td>
@@ -129,10 +134,13 @@
                                                 <input type="checkbox" ng-mousedown="toggleToDoDone(toDoItem)" checked><div class="topcoat-checkbox__checkmark"/></input>
                                             </label>
                                         </td>
-                                        <td>
+                                        <td class="center">
                                             <input type="text" class="topcoat-text-input full" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
                                         </td>
-                                        <td style="float:right">
+                                        <td class="center">
+                                            {{toDoItem.createDate}}
+                                        </td>
+                                        <td class="center">
                                             <button class="topcoat-button" ng-click="removeToDo(toDoItem)">Remove</button>
                                         </td>
                                     </tr>
