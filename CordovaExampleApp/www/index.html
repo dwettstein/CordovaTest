@@ -28,10 +28,11 @@
         <!-- Metro UI CSS 2.0 -->
         <link rel="stylesheet" href="./css/metro-bootstrap.min.css" />
         <link rel="stylesheet" href="./css/metro-bootstrap-responsive.min.css" />
-        <script src="./js/vendor/metro.min.js"></script>
         <script src="./js/vendor/jquery/jquery-2.1.1.min.js"></script>
         <script src="./js/vendor/jquery/jquery.ui.widget.min.js"></script>
         <!--<script src="./js/vendor/jquery/jquery.mousewheel.js"></script>-->
+        <script src="./js/vendor/metro.min.js"></script>
+        
 
         <!-- AngularJS -->
         <script src="./js/vendor/angular.js"></script>
@@ -44,37 +45,61 @@
         <title>ToDo Application</title>
     </head>
     <body class="metro" ng-app="ToDoApp" ng-controller="TabController as panel">
-        <header class="bg-dark"><div class="span9 offset3">ToDo List</div></header>
+        <header class="bg-dark"><div class="span8 offset2">ToDo List</div></header>
 
         <div class="container" ng-controller="ToDoController">
             <div class="grid">
                 <div class="row">
-                    <div class="span9 offset3">
+                    <div class="span8 offset2">
                         <p>
-                            <input type="text" class="topcoat-text-input full" placeholder="Add a new todo..." ng-text-change="addToDo()" ng-model="newToDoText" autofocus ></input>
-                        </p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="span9 offset3">
-                        <p>
-                            <div class="topcoat-tab-bar full">
-                                <label class="topcoat-tab-bar__item">
-                                    <input type="radio" name="tab-bar" checked>
-                                        <button class="topcoat-tab-bar__button full" ng-click="panel.selectTab(1)">Open</button>
-                                    </input>
-                                </label>
-                                <label class="topcoat-tab-bar__item">
-                                    <input type="radio" name="tab-bar">
-                                        <button class="topcoat-tab-bar__button full" ng-click="panel.selectTab(2)">Done</button>
-                                    </input>
-                                </label>
+                            <div class="input-control text">
+                                <input type="text" placeholder="Add a new todo..." ng-text-change="addToDo()" ng-model="newToDoText" autofocus></input>
+                                <!--<button class="btn-clear"></button>-->
                             </div>
                         </p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="span9 offset3" ng-show="panel.isSelected(1)">
+                    <div class="span8 offset2">
+                        <div class="button-set no-spaces">
+                            <button class="span4" ng-class="{active: panel.isSelected(1)}" ng-click="panel.selectTab(1)">Open</button>
+                            <button class="span4" ng-class="{active: panel.isSelected(2)}" ng-click="panel.selectTab(2)">Done</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--<div class="span8 offset2" ng-show="panel.isSelected(1)">-->
+                    <div ng-show="panel.isSelected(1)">
+                        <div class="tile-area tile-area-dark">
+                            <h1 class="tile-area-title fg-white">ToDo's</h1>
+
+                            <div class="tile-group triple">
+                                <div class="tile-group-title">Open</div>
+                                <div ng-repeat="toDoItem in todos" ng-show="!toDoItem.done">
+                                    <div class="tile bg-darkCobalt">
+                                        <div class="tile-content fg-white text-center">{{toDoItem.text}}</div>
+                                        <div class="brand bg-black">
+                                            <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
+                                            <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tile-group triple">
+                                <div class="tile-group-title">Done</div>
+                                <div ng-repeat="toDoItem in todos" ng-show="toDoItem.done">
+                                    <div class="tile bg-darkCobalt">
+                                        <div class="tile-content fg-white text-center">{{toDoItem.text}}</div>
+                                        <div class="brand bg-black">
+                                            <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
+                                            <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <ul class="topcoat-list__container" ng-repeat="toDoItem in todos" ng-show="!toDoItem.done">
                             <li class="topcoat-list__item">
                                 <table>
@@ -86,22 +111,28 @@
                                         <col span="1" style="width:5%">
                                     </colgroup>
                                     <tr>
-                                        <td class="center">
-                                            <div>{{todos.indexOf(toDoItem)}}</div>
+                                        <td class="text-center">
+                                            <div ng-class="{'text-muted': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
                                         </td>
                                         <td>
-                                            <label class="topcoat-checkbox">
-                                                <input type="checkbox" ng-mousedown="toggleToDoDone(toDoItem)"><div class="topcoat-checkbox__checkmark"/></input>
-                                            </label>
+                                            <button class="success" ng-click="toggleToDoDone(toDoItem)">Done</button>
+                                            <!--<div class="input-control checkbox" ng-mousedown="toggleToDoDone(toDoItem)">
+                                                <label>
+                                                    <input type="checkbox"/>
+                                                    <span class="check"></span>
+                                                </label>
+                                            </div>-->
                                         </td>
-                                        <td class="center">
-                                            <input type="text" class="topcoat-text-input full" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
+                                        <td class="text-center">
+                                            <div class="input-control text">
+                                                <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
+                                            </div>
                                         </td>
-                                        <td class="center">
-                                            <div>{{toDoItem.createDate}}</div>
+                                        <td class="text-center">
+                                            <div ng-class="{'text-muted': toDoItem.done}">{{toDoItem.createDate}}</div>
                                         </td>
-                                        <td class="center">
-                                            <button class="topcoat-button" ng-click="removeToDo(toDoItem)">Remove</button>
+                                        <td class="text-center">
+                                            <button class="danger" ng-click="removeToDo(toDoItem)">Remove</button>
                                         </td>
                                     </tr>
                                 </table>
