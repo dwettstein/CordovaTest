@@ -30,15 +30,17 @@
         <link rel="stylesheet" href="./css/metro-bootstrap-responsive.min.css" />
         <script src="./js/vendor/jquery/jquery-2.1.1.min.js"></script>
         <script src="./js/vendor/jquery/jquery.ui.widget.min.js"></script>
+        <!--<script src="./js/vendor/jquery/jquery-ui.min.js"></script>-->
         <!--<script src="./js/vendor/jquery/jquery.mousewheel.js"></script>-->
         <script src="./js/vendor/metro.min.js"></script>
-        
 
         <!-- AngularJS -->
         <script src="./js/vendor/angular.js"></script>
         <script src="./app/app.js"></script>
         <script src="./app/controllers/ToDoController.js"></script>
         <script src="./app/controllers/TabController.js"></script>
+        <script src="./app/controllers/ModalController.js"></script>
+        <script src="./app/controllers/ModalInstanceController.js"></script>
         <script src="./app/services/services.js"></script>
         <script src="./app/directives/directives.js"></script>
 
@@ -53,7 +55,7 @@
                     <div class="span8 offset2">
                         <p>
                             <div class="input-control text">
-                                <input type="text" placeholder="Add a new todo..." ng-text-change="addToDo()" ng-model="newToDoText" autofocus></input>
+                                <input type="text" placeholder="Add a new todo..." ng-text-change="addToDo()" ng-model="newToDoTitle" autofocus></input>
                                 <!--<button class="btn-clear"></button>-->
                             </div>
                         </p>
@@ -70,14 +72,14 @@
                 <div class="row">
                     <!--<div class="span8 offset2" ng-show="panel.isSelected(1)">-->
                     <div ng-show="panel.isSelected(1)">
-                        <div class="tile-area tile-area-dark">
+                        <div class="tile-area tile-area-dark" ng-controller="ModalController as modal">
                             <h1 class="tile-area-title fg-white">ToDo's</h1>
 
                             <div class="tile-group triple">
                                 <div class="tile-group-title">Open</div>
-                                <div ng-repeat="toDoItem in todos" ng-show="!toDoItem.done">
-                                    <div class="tile bg-darkCobalt">
-                                        <div class="tile-content fg-white text-center">{{toDoItem.text}}</div>
+                                <div ng-repeat="toDoItem in todos" ng-if="!toDoItem.done">
+                                    <div class="tile bg-darkCobalt" ng-click="modal.open(toDoItem)">
+                                        <div class="tile-content fg-white text-center">{{toDoItem.title}}</div>
                                         <div class="brand bg-black">
                                             <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
                                             <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
@@ -88,9 +90,9 @@
 
                             <div class="tile-group triple">
                                 <div class="tile-group-title">Done</div>
-                                <div ng-repeat="toDoItem in todos" ng-show="toDoItem.done">
+                                <div ng-repeat="toDoItem in todos" ng-if="toDoItem.done">
                                     <div class="tile bg-darkCobalt">
-                                        <div class="tile-content fg-white text-center">{{toDoItem.text}}</div>
+                                        <div class="tile-content fg-white text-center">{{toDoItem.title}}</div>
                                         <div class="brand bg-black">
                                             <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
                                             <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
@@ -125,7 +127,7 @@
                                         </td>
                                         <td class="text-center">
                                             <div class="input-control text">
-                                                <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
+                                                <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoTitle(toDoItem)" ng-model="toDoItem.title"/>
                                             </div>
                                         </td>
                                         <td class="text-center">
@@ -161,7 +163,7 @@
                                             </label>
                                         </td>
                                         <td class="center">
-                                            <input type="text" class="topcoat-text-input full" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
+                                            <input type="text" class="topcoat-text-input full" ng-text-change="changeToDoTitle(toDoItem)" ng-model="toDoItem.title"/>
                                         </td>
                                         <td class="center">
                                             {{toDoItem.createDate}}

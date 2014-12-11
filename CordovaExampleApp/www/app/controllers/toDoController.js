@@ -7,22 +7,31 @@
         	}
 
         	$scope.addToDo = function () {
-        		var text = $scope.newToDoText;
-        		if (!text) {
+        		var title = $scope.newToDoTitle;
+        		if (!title) {
         			return;
         		};
+                var description = $scope.newToDoDescription;
+                if (!description) {
+                    description = '';
+                };
 
-        		$scope.newToDoText = '';
-        		storage.create(text)
+        		$scope.newToDoTitle = '';
+                $scope.newToDoDescription = '';
+        		storage.create(title, description)
                     .then(function (todo) {
                     	$scope.todos.push(todo);
                     	return todo;
                     });
         	}
 
-        	$scope.changeToDoText = function (toDoItem) {
+        	$scope.changeToDoTitle = function (toDoItem) {
         		storage.update(toDoItem)
         	}
+
+            $scope.changeToDoDescription = function (toDoItem) {
+                storage.update(toDoItem)
+            }
 
         	$scope.toggleToDoDone = function (toDoItem) {
         		toDoItem.done = !toDoItem.done;

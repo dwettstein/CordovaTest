@@ -1,0 +1,12 @@
+<form class="user-input bg-dark" ng-model="toDoItem">
+       <div class="input-control text">
+              <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.text"/>
+       </div>
+
+       <div ng-class="{'text-muted': toDoItem.done}">{{toDoItem.createDate}}</div>
+
+       <div class="form-actions">
+              <button class="danger" ng-click="removeToDo(toDoItem)">Remove</button>
+              <button class="button" type="button" onclick="$.Dialog.close()">Cancel</button>
+       </div>
+</form>

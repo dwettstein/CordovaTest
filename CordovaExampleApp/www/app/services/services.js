@@ -39,10 +39,12 @@
                     return loadFromStorage();
                 },
 
-                create: function (text) {
+                create: function (title, description) {
                     var item = {
                         id: guidGenerator(),
-                        text: text,
+                        title: title,
+                        description: description,
+                        dueDate: '',
                         createDate: (new Date(Date.now())).toLocaleString(),
                         done: false
                     }
