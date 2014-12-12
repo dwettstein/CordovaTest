@@ -1,4 +1,4 @@
-<div class="metro" ng-controller="ToDoController">
+<div class="message-dialog span6 offset3" ng-controller="ToDoController">
 	<div class="modal-header">
 	    <h4 class="modal-title">ToDo Details</h4>
 	</div>
@@ -19,7 +19,7 @@
 	<div class="modal-footer">
 	    <button class="success" ng-click="toggleToDoDone(toDoItem)" ng-show="!toDoItem.done">Done</button>
 	    <button class="warning" ng-click="toggleToDoDone(toDoItem)" ng-show="toDoItem.done">Undone</button>
-	    <button class="danger" ng-click="removeToDo(toDoItem).then(close())">Remove</button>
+	    <button class="danger" ng-click="close().then(removeToDo(toDoItem))">Remove</button>
 	    <button class="button" ng-click="close()">Close</button>
 	</div>
 </div>

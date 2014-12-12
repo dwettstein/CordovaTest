@@ -47,17 +47,17 @@
 
         <title>ToDo Application</title>
     </head>
-    <body class="metro" ng-app="ToDoApp" ng-controller="TabController as panel">
+    <body class="metro" ng-app="ToDoApp" ng-controller="ToDoController"><!--ng-controller="TabController as panel">-->
         <header class="bg-dark"><div class="fg-white">ToDo List</div></header>
 
-        <div class="container" ng-controller="ToDoController">
-            <div class="grid">
+        <!--<div class="container">-->
+            <!--<div class="grid">
                 <div class="row">
                     <div class="span8 offset2">
                         <p>
                             <div class="input-control text">
                                 <input type="text" placeholder="Add a new todo..." ng-text-change="addToDo()" ng-model="newToDoTitle" autofocus></input>
-                                <!--<button class="btn-clear"></button>-->
+                                <!-<button class="btn-clear"></button>->
                             </div>
                         </p>
                     </div>
@@ -69,41 +69,48 @@
                             <button class="span4" ng-class="{active: panel.isSelected(2)}" ng-click="panel.selectTab(2)">Done</button>
                         </div>
                     </div>
-                </div>
-                <div class="row">
+                </div>-->
+                <!--<div class="row">-->
                     <!--<div class="span8 offset2" ng-show="panel.isSelected(1)">-->
-                    <div ng-show="panel.isSelected(1)">
-                        <div class="tile-area tile-area-dark" ng-controller="ModalController">
-                            <h1 class="tile-area-title fg-white">ToDo's</h1>
+                    <!--<div ng-show="panel.isSelected(1)">-->
+                        <div class="tile-area tile-area-dark" >
+                            <h1 class="tile-area-title bg-dark fg-white">ToDo's</h1>
+                            
+                            <div class="input-control text">
+                                <input type="text" placeholder="Add a new todo..." ng-text-change="addToDo()" ng-model="newToDoTitle" autofocus></input>
+                                <!--<button class="btn-clear"></button>-->
+                            </div>
 
-                            <div class="tile-group triple">
-                                <div class="tile-group-title">Open</div>
-                                <div ng-repeat="toDoItem in todos" ng-if="!toDoItem.done">
-                                    <div class="tile bg-darkCobalt" ng-click="open(toDoItem)">
-                                        <div class="tile-content fg-white text-center">{{toDoItem.title}}</div>
-                                        <div class="brand bg-black">
-                                            <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
-                                            <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
+                            <div ng-controller="ModalController">
+                                <div class="tile-group triple">
+                                    <div class="tile-group-title">Open</div>
+                                    <div ng-repeat="toDoItem in todos" ng-if="!toDoItem.done">
+                                        <div class="tile bg-darkCobalt" ng-click="open(toDoItem)">
+                                            <div class="tile-content fg-white text-center">{{toDoItem.title}}</div>
+                                            <div class="brand bg-black">
+                                                <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
+                                                <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div class="tile-group triple">
-                                <div class="tile-group-title">Done</div>
-                                <div ng-repeat="toDoItem in todos" ng-if="toDoItem.done">
-                                    <div class="tile bg-darkCobalt">
-                                        <div class="tile-content fg-white text-center">{{toDoItem.title}}</div>
-                                        <div class="brand bg-black">
-                                            <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
-                                            <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
+                                <div class="tile-group triple">
+                                    <div class="tile-group-title">Done</div>
+                                    <div ng-repeat="toDoItem in todos" ng-if="toDoItem.done">
+                                        <div class="tile bg-darkCobalt" ng-click="open(toDoItem)">
+                                            <div class="tile-content fg-white text-center">{{toDoItem.title}}</div>
+                                            <div class="brand bg-black">
+                                                <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
+                                                <div ng-class="{'badge bg-red': !toDoItem.done, 'badge bg-green': toDoItem.done}">{{todos.indexOf(toDoItem)}}</div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <ul class="topcoat-list__container" ng-repeat="toDoItem in todos" ng-show="!toDoItem.done">
+                        <!--<ul class="topcoat-list__container" ng-repeat="toDoItem in todos" ng-show="!toDoItem.done">
                             <li class="topcoat-list__item">
                                 <table>
                                     <colgroup>
@@ -119,12 +126,12 @@
                                         </td>
                                         <td>
                                             <button class="success" ng-click="toggleToDoDone(toDoItem)">Done</button>
-                                            <!--<div class="input-control checkbox" ng-mousedown="toggleToDoDone(toDoItem)">
+                                            <div class="input-control checkbox" ng-mousedown="toggleToDoDone(toDoItem)">
                                                 <label>
                                                     <input type="checkbox"/>
                                                     <span class="check"></span>
                                                 </label>
-                                            </div>-->
+                                            </div>
                                         </td>
                                         <td class="text-center">
                                             <div class="input-control text">
@@ -140,10 +147,10 @@
                                     </tr>
                                 </table>
                             </li>
-                        </ul>
-                    </div>
+                        </ul>-->
+                    <!--</div>-->
 
-                    <div class="topcoat-list" ng-show="panel.isSelected(2)">
+                    <!--<div class="topcoat-list" ng-show="panel.isSelected(2)">
                         <ul class="topcoat-list__container" ng-repeat="toDoItem in todos" ng-show="toDoItem.done">
                             <li class="topcoat-list__item">
                                 <table>
@@ -176,10 +183,10 @@
                                 </table>
                             </li>
                         </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
         <script src="./js/index.js"></script>
         <script type="text/javascript">
             app.initialize();
