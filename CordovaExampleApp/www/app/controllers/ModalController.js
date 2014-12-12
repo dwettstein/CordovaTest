@@ -1,11 +1,34 @@
 (function () {
     'use strict';
     angular.module("ToDoApp.controllers")
-        .controller('ModalController', ['$scope', function ($scope) {
+        .controller('ModalController', ['$scope', '$modal', function ($scope, $modal) {
+
+            $scope.open = function(toDoItem, size) {
+                $scope.toDoItem = toDoItem;
+
+                console.log("Clicked on toDoItem with id: " + toDoItem.id);
+
+                var modalInstance = $modal.open({
+                  templateUrl: './app/partials/toDoDetailWindow.html',
+                  controller: 'ModalInstanceController',
+                  size: size,
+                  resolve: {
+                    toDoItem: toDoItem
+                  }
+                });
+
+                modalInstance.result.then(function (toDoItem) {
+                  $scope.toDoItem = toDoItem;
+                }, function () {
+                  console.log('Modal dismissed at: ' + new Date());
+                });
+            };
+
+            /*
             this.open = function(toDoItem) {
                 console.log(toDoItem.id);
                 $scope.toDoItem = toDoItem;
-                /*
+                
                 var modalWindow = $("<div>").dialog({
                     overlay: true,
                     shadow: true,
@@ -25,7 +48,7 @@
                 modalWindow.load('../partials/toDoDetailWindow.html', function () {
                     $(this).dialog('open');
                 });
-                */
+                
                 $.Dialog({
                     overlay: true,
                     shadow: true,
@@ -53,6 +76,6 @@
                 });
                 
             };
-            
+            */
         }]);
 })();

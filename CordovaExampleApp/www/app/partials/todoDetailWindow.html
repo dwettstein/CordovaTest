@@ -1,26 +1,21 @@
-<form class="user-input">
-       <label>Login</label>
-       <div class="input-control text">
-              <input type="text" name="login"/>
-              <button class="btn-clear"></button>
-       </div>
-       
-       <label>Password</label>
-       <div class="input-control password">
-              <input type="password" name="password"/>
-              <button class="btn-reveal"></button>
-       </div>
+<div ng-app="ToDoApp" ng-controller="ToDoController">
+	<div class="modal-header">
+	    <h4 class="modal-title">ToDo Details</h4>
+	</div>
+	<div class="modal-body">
+		<form class="user-input bg-dark" ng-model="toDoItem">
+		       <div class="input-control text">
+		              <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.title"/>
+		       </div>
 
-       <div class="input-control checkbox">
-              <label>
-                     <input type="checkbox" name="c1" checked/>
-                     <span class="check"></span>
-                     Check me out
-              </label>
-       </div>
-
-       <div class="form-actions">
-              <button class="button primary">Login to...</button>&nbsp;
-              <button class="button" type="button" onclick="$.Dialog.close()">Cancel</button>
-       </div>
-</form>
+		       <div ng-class="{'text-muted': toDoItem.done}">{{toDoItem.createDate}}</div>
+		</form>
+	</div>
+	<div class="modal-footer">
+	    <button class="button" ng-click="ok()">Done</button>
+	    <button class="success" ng-click="toggleToDoDone(toDoItem).then(ok())" ng-if="!toDoItem.done">Done</button>
+	    <button class="warning" ng-click="toggleToDoDone(toDoItem).then(ok())" ng-if="toDoItem.done">Undone</button>
+	    <button class="danger" ng-click="removeToDo(toDoItem)">Remove</button>
+	    <button class="button" ng-click="cancel()">Cancel</button>
+	</div>
+</div>

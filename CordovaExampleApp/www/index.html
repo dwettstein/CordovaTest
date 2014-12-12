@@ -36,6 +36,7 @@
 
         <!-- AngularJS -->
         <script src="./js/vendor/angular.js"></script>
+        <script src="./js/vendor/ui-bootstrap-tpls-0.12.0.min.js"></script>
         <script src="./app/app.js"></script>
         <script src="./app/controllers/ToDoController.js"></script>
         <script src="./app/controllers/TabController.js"></script>
@@ -72,13 +73,13 @@
                 <div class="row">
                     <!--<div class="span8 offset2" ng-show="panel.isSelected(1)">-->
                     <div ng-show="panel.isSelected(1)">
-                        <div class="tile-area tile-area-dark" ng-controller="ModalController as modal">
+                        <div class="tile-area tile-area-dark" ng-controller="ModalController">
                             <h1 class="tile-area-title fg-white">ToDo's</h1>
 
                             <div class="tile-group triple">
                                 <div class="tile-group-title">Open</div>
                                 <div ng-repeat="toDoItem in todos" ng-if="!toDoItem.done">
-                                    <div class="tile bg-darkCobalt" ng-click="modal.open(toDoItem)">
+                                    <div class="tile bg-darkCobalt" ng-click="open(toDoItem)">
                                         <div class="tile-content fg-white text-center">{{toDoItem.title}}</div>
                                         <div class="brand bg-black">
                                             <span class="label fg-white"><small>{{toDoItem.createDate}}</small></span>
