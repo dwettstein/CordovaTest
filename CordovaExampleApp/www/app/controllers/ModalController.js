@@ -13,7 +13,10 @@
                   controller: 'ModalInstanceController',
                   size: size,
                   resolve: {
-                    toDoItem: toDoItem
+                    toDoItem: function () {
+                      $scope.toDoItem = toDoItem;
+                      return $scope.toDoItem;
+                    }
                   }
                 });
 

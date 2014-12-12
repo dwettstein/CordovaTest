@@ -1,21 +1,25 @@
-<div ng-app="ToDoApp" ng-controller="ToDoController">
+<div class="metro" ng-controller="ToDoController">
 	<div class="modal-header">
 	    <h4 class="modal-title">ToDo Details</h4>
 	</div>
 	<div class="modal-body">
 		<form class="user-input bg-dark" ng-model="toDoItem">
+		       <label>ToDo title:</label>
 		       <div class="input-control text">
-		              <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoText(toDoItem)" ng-model="toDoItem.title"/>
+		              <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoTitle(toDoItem)" ng-model="toDoItem.title"/>
 		       </div>
-
+		       <label>ToDo description:</label>
+		       <div class="input-control textarea">
+		              <input type="text" ng-class="{'text-muted': toDoItem.done}" ng-text-change="changeToDoDescription(toDoItem)" ng-model="toDoItem.description"/>
+		       </div>
+		       <label>ToDo created at:</label>
 		       <div ng-class="{'text-muted': toDoItem.done}">{{toDoItem.createDate}}</div>
 		</form>
 	</div>
 	<div class="modal-footer">
-	    <button class="button" ng-click="ok()">Done</button>
-	    <button class="success" ng-click="toggleToDoDone(toDoItem).then(ok())" ng-if="!toDoItem.done">Done</button>
-	    <button class="warning" ng-click="toggleToDoDone(toDoItem).then(ok())" ng-if="toDoItem.done">Undone</button>
-	    <button class="danger" ng-click="removeToDo(toDoItem)">Remove</button>
-	    <button class="button" ng-click="cancel()">Cancel</button>
+	    <button class="success" ng-click="toggleToDoDone(toDoItem)" ng-show="!toDoItem.done">Done</button>
+	    <button class="warning" ng-click="toggleToDoDone(toDoItem)" ng-show="toDoItem.done">Undone</button>
+	    <button class="danger" ng-click="removeToDo(toDoItem).then(close())">Remove</button>
+	    <button class="button" ng-click="close()">Close</button>
 	</div>
 </div>
