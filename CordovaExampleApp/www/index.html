@@ -55,12 +55,12 @@
                 <p>
                     <div class="topcoat-tab-bar full">
                         <label class="topcoat-tab-bar__item">
-                            <input type="radio" name="tab-bar" checked>
+                            <input type="radio" name="tab-bar" ng-checked="panel.selectedTab == 1">
                                 <button class="topcoat-tab-bar__button full" ng-click="panel.selectTab(1)">Open</button>
                             </input>
                         </label>
                         <label class="topcoat-tab-bar__item">
-                            <input type="radio" name="tab-bar">
+                            <input type="radio" name="tab-bar" ng-checked="panel.selectedTab == 2">
                                 <button class="topcoat-tab-bar__button full" ng-click="panel.selectTab(2)">Done</button>
                             </input>
                         </label>

@@ -2,14 +2,14 @@
 	'use strict';
 	angular.module("ToDoApp.controllers")
         .controller('TabController', function () {
-            this.tab = 1;
+            this.selectedTab = 1;
                 
             this.selectTab = function (setTab) {
-                this.tab = setTab;
+                this.selectedTab = setTab;
             };
 
             this.isSelected = function (checkTab) {
-                return this.tab === checkTab;
+                return this.selectedTab === checkTab;
             };
         });
 })();
